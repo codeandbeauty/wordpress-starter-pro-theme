@@ -1,0 +1,181 @@
+.screen-reader-text {
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  overflow: hidden;
+  position: absolute !important;
+  width: 1px;
+  word-wrap: normal !important;
+}
+
+.site .skip-link {
+  background-color: #f1f1f1;
+  box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2);
+  color: #21759b;
+  display: block;
+  font-family: Montserrat, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  left: -9999em;
+  outline: none;
+  padding: 15px 23px 14px;
+  text-decoration: none;
+  text-transform: none;
+  top: -9999em;
+}
+
+.alignleft {
+  float: left;
+}
+
+.alignright {
+  float: right;
+}
+
+.alignnone,
+.aligncenter {
+  display: block;
+  clear: both;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.alignnone {
+  margin: 0;
+}
+
+article {
+  .alignleft {
+    margin: 0 15px 15px 0;
+  }
+  .alignright {
+    margin: 0 0 15px 15px;
+  }
+  .aligncenter {
+    display: block;
+    margin: 15px auto;
+  }
+}
+
+.entry-date {
+  position: absolute;
+  height:0;
+  overflow: hidden;
+}
+
+/* Placeholder text color -- selectors need to be separate to work. */
+::-webkit-input-placeholder {
+  color: #333;
+  font-family: "Libre Franklin", "Helvetica Neue", helvetica, arial, sans-serif;
+}
+
+:-moz-placeholder {
+  color: #333;
+  font-family: "Libre Franklin", "Helvetica Neue", helvetica, arial, sans-serif;
+}
+
+::-moz-placeholder {
+  color: #333;
+  font-family: "Libre Franklin", "Helvetica Neue", helvetica, arial, sans-serif;
+  opacity: 1;
+  /* Since FF19 lowers the opacity of the placeholder by default */
+}
+
+:-ms-input-placeholder {
+  color: #333;
+  font-family: "Libre Franklin", "Helvetica Neue", helvetica, arial, sans-serif;
+}
+
+table {
+  border-collapse: collapse;
+  margin: 0 0 1.5em;
+  width: 100%;
+}
+
+thead th {
+  padding-bottom: 0.5em;
+}
+
+th {
+  padding: 0.4em;
+  text-align: left;
+}
+
+td {
+  padding: 0.4em;
+}
+
+th:first-child,
+td:first-child {
+  padding-left: 0;
+}
+
+th:last-child,
+td:last-child {
+  padding-right: 0;
+}
+
+.wp-caption {
+  text-align: center;
+}
+
+.wp-caption-text,
+.gallery-caption {
+  text-align: center;
+  margin: 0;
+  font-size: 90%;
+}
+
+.bypostauthor {
+  display: inline-block;
+}
+
+.page-numbers,
+.nav-subtitle {
+  border: 0;
+  display: inline-block;
+  padding: 3px 12px;
+  background-color: #464646;
+  color: #fff;
+  @include radius(3px);
+
+  &:hover {
+    background-color: #3b3b3b;
+    color: #ffffff;
+  }
+
+  &.current,
+  &.dots {
+    color: inherit;
+    border: 0;
+    background: transparent;
+    border-bottom: 3px double #c6c6c6;
+  }
+
+  &.dots {
+    border: 0;
+  }
+}
+
+.nav-links {
+  @include clearfix;
+}
+.nav-subtitle {
+  display: inline-block;
+}
+.nav-previous {
+  float: left;
+  width: 30%;
+  @include borderbox;
+}
+.nav-next {
+  float: right;
+  text-align: right;
+  width: 30%;
+  @include borderbox;
+}
+
+.nav-title {
+  display: block;
+  font-size: 0.9em;
+  margin-top: 10px;
+}

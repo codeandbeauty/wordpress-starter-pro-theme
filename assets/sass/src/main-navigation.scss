@@ -1,0 +1,22 @@
+#main-navigation {
+  background-color: #d54e21;
+  border-top: 1px solid #5a5a5a;
+  padding: 5px 0;
+
+  a {
+    color: #ffffff;
+  }
+
+  @media screen {
+    @media (min-width: 700px) {
+      .menu-item {
+        display: inline-block;
+
+        a {
+          display: block;
+          padding: 8px 15px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+.top-section {
+  background-color: #434343;
+  border-bottom: 1px solid #5a5a5a;
+
+  .mini-logo-link {
+    display: none;
+    line-height: 0;
+
+    img {
+      max-height: 40px;
+      width: auto;
+    }
+  }
+
+  .top-text {
+    padding: 9px 0;
+  }
+
+  .toggle-search {
+    float: right;
+  }
+
+  .search-box {
+    display: none;
+    padding: 5px 0;
+  }
+
+  @media screen {
+    @media (min-width: 400px) {
+      .top-text {
+        display: inline-block;
+      }
+    }
+
+    @media (min-width: 700px) {
+      .toggle-search {
+        display: none;
+      }
+
+      .search-box {
+        float: right;
+        display: block;
+      }
+    }
+  }
+}

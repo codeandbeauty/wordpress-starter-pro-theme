@@ -1,0 +1,78 @@
+$width: 100%;
+$max_width: 1280px;
+$font_family: 'Montserrat', sans-serif;
+
+$textColor: #222222;
+$linkColor: #3b6fcc;
+$hoverLinkColor: #2a4994;
+
+@mixin borderbox {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin clearfix {
+  clear: both;
+  &:before,
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@mixin textshadow($shadow) {
+  text-shadow: $shadow;
+}
+
+@mixin boxshadow($shadow) {
+  -webkit-box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin transition($trans) {
+  -webkit-transition: $trans;
+  -moz-transition: $trans;
+  -ms-transition: $trans;
+  -o-transition: $trans;
+  transition: $trans;
+}
+
+@mixin icon($icon) {
+  content: $icon;
+  font-family: FontAwesome;
+}
+
+@mixin boxsizing() {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@mixin transform($trans) {
+  -webkit-transform: $trans;
+  -moz-transform: $trans;
+  -ms-transform: $trans;
+  -o-transform: $trans;
+  transform: $trans;
+}
+
+@mixin column ($count, $gap){
+  -webkit-column-count: $count; /* Chrome, Safari, Opera */
+  -moz-column-count: $count; /* Firefox */
+  column-count: $count;
+
+  -webkit-column-gap: $gap; /* Chrome, Safari, Opera */
+  -moz-column-gap: $gap; /* Firefox */
+  column-gap: $gap;
+}

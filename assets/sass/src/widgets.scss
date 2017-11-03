@@ -1,0 +1,24 @@
+.widget {
+  margin: 0 0 25px 0;
+  font-size: 0.9em;
+
+  .widget-title {
+    font-weight: 400;
+    font-size: 1.1em;
+    padding: 5px 0;
+    border-bottom: 3px double #c6c6c6;
+  }
+
+  ul,
+  ol {
+    margin: 0;
+    padding: 0;
+    list-style-position: inside;
+  }
+}
+
+.right-container {
+  .widget-title {
+
+  }
+}

@@ -1,0 +1,5 @@
+node_modules/
+.sass-cache/
+.idea/
+assets/sass/.sass-cache/
+assets/sass/*/.sass-cache/

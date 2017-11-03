@@ -1,0 +1,39 @@
+/**
+Theme Name: YOUR-THEME-NAME-HERE
+Description: A brief description of what your theme about.
+Version: 1.0.0
+Author: CodeAndBeauty
+Author URI: http://www.codeandbeauty.com
+Theme URI: http://www.codeandbeauty.com/starter-theme
+Text Domain: cad
+License: GPLv2 or higher
+ */
+
+@import "mixin";
+@import "src/normalize";
+@import "src/global";
+
+/** GLOBAL WordPress theme required classes **/
+@import "src/wp-class";
+
+/** FORM and form-fields **/
+@import "src/inputs";
+
+/** Header **/
+@import "src/header";
+@import "src/top-section";
+@import "src/masthead";
+@import "src/main-navigation";
+
+/** General archive styling **/
+@import "src/archive";
+
+/** General single post/page styling **/
+@import "src/single";
+
+/** Widgets and widgets containers **/
+@import "src/widgets";
+
+/** Footer area **/
+@import "src/footer";
+

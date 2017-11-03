@@ -1,0 +1,46 @@
+.single {
+  .single-section {
+    padding-top: 25px;
+    padding-bottom: 0;
+    border: 1px solid transparent;
+  }
+  color: #464646;
+
+  .entry-title {
+    position: relative;
+    text-align: center;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .post-meta {
+    font-size: 0.85em;
+    color: #666666;
+
+    a {
+      color: inherit;
+    }
+
+    span {
+      display: inline-block;
+    }
+  }
+
+  .meta-comments {
+    float: right;
+    color: #21759b;
+  }
+
+  .entry-footer {
+    margin: 15px 0;
+  }
+
+  @media screen {
+    @media (min-width: 800px) {
+      .entry-header {
+        padding: 15px 0 0 0;
+      }
+    }
+  }
+}

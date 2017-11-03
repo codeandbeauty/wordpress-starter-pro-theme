@@ -1,0 +1,46 @@
+.home,
+.archive {
+  .section {
+    padding: 0;
+    border: 1px solid transparent;
+  }
+
+  .entry-title {
+    font-weight: 300;
+    color: #111111;
+  }
+
+  article {
+    @include clearfix;
+    margin: 0 0 25px 0;
+    border: 1px solid transparent;
+
+    .inner {
+      @include clearfix;
+    }
+  }
+
+  .comment-meta {
+    float: right;
+    padding-left: 15px;
+  }
+
+  .entry-footer {
+    font-size: 0.9em;
+
+    .meta {
+      display: inline-block;
+      margin-right: 15px;
+    }
+  }
+
+  @media screen {
+    @media (min-width: 700px) {
+      .feature-image {
+        float: left;
+        margin: 0 15px 5px 0;
+        width: 35%;
+      }
+    }
+  }
+}
