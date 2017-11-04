@@ -54,6 +54,11 @@
         max-width: 65%;
         margin-left: auto;
       }
+
+      .featured-content {
+        max-height: 90px;
+        overflow: hidden;
+      }
     }
 
     @media (min-width: 800px) {
@@ -66,6 +71,8 @@
 
       .featured-content {
         font-size: 1.1em;
+        max-height: 100%;
+        overflow: visible;
       }
     }
 

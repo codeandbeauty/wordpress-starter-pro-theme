@@ -40,6 +40,13 @@ function codeandbeauty_setup() {
 
 	// Enable background support
 	add_theme_support( 'custom-background' );
+
+	add_theme_support( 'html5', array(
+		'comment-form',
+		'comment-list',
+		'gallery',
+		'caption',
+	) );
 }
 add_action( 'after_setup_theme', 'codeandbeauty_setup' );
 

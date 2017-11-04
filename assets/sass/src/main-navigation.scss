@@ -2,20 +2,174 @@
   background-color: #d54e21;
   border-top: 1px solid #5a5a5a;
   padding: 5px 0;
+  @include clearfix;
+
+  .container {
+    display: none;
+  }
 
   a {
     color: #ffffff;
   }
 
+  .menu-item {
+    display: block;
+
+    a {
+      display: block;
+      padding: 2px 15px;
+
+      &:hover {
+        background-color: #c0491f;
+      }
+    }
+
+    &:hover {
+      background-color: #c0491f;
+    }
+  }
+
+  .sub-menu {
+    margin: 0;
+    list-style: none;
+    padding: 0 0 0 15px;
+  }
+
+  .search-box {
+    margin: 15px 0 0 0;
+  }
+
+  .searchform {
+    div {
+      position: relative;
+
+      &:after {
+        content: '\f002';
+        position: absolute;
+        font-family: FontAwesome;
+        color: #777;
+        top: 0;
+        right: 10px;
+        line-height: 1.7;
+      }
+    }
+  }
+
+  #searchsubmit {
+    display: none;
+  }
+
+  #s {
+    @include radius(20px);
+    display: block;
+    width: 100%;
+    border: 0;
+  }
+
+  .toggle {
+    float: right;
+    margin: 0;
+    padding: 0 15px;
+    border: 0;
+    color: #ffffff;
+    line-height: 5px;
+    background: transparent;
+  }
+
+  #main-nav-menu-toggle {
+    display: none;
+  }
+
+  :checked + .container {
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
   @media screen {
-    @media (min-width: 700px) {
+    @media (min-width: 800px) {
+      padding: 5px 0;
+
+      .toggle {
+        display: none;
+      }
+
+      .container {
+        display: block;
+      }
+
+      .main-nav {
+        float: left;
+        width: 70%;
+        @include borderbox;
+      }
+
       .menu-item {
         display: inline-block;
+        vertical-align: top;
 
         a {
-          display: block;
           padding: 8px 15px;
         }
+      }
+
+      .sub-menu {
+        position: absolute;
+        padding: 2px 15px;
+        z-index: -9;
+        background-color: #fafafa;
+        border: {
+          style: solid;
+          color: #c0491f;
+          width: 5px 0;
+        }
+        opacity: 0;
+        @include transition(0.4s);
+
+        .menu-item {
+          a {
+            color: #444444;
+
+            &:hover {
+              color: #ffffff;
+            }
+          }
+        }
+
+        .sub-menu {
+          position: relative;
+          z-index: 1;
+          opacity: 1;
+          display: block;
+          border: 0;
+
+          .menu-item {
+            display: block;
+
+            &:hover {
+              background: none;
+            }
+
+            a {
+              padding: 2px 15px;
+
+              &:hover {
+                background: none;
+                color: #c0491f;
+              }
+            }
+          }
+        }
+      }
+
+      .menu-item-has-children:hover > .sub-menu {
+        z-index: 9999;
+        opacity: 1;
+      }
+
+      .search-box {
+        float: right;
+        margin: 5px 0;
       }
     }
   }

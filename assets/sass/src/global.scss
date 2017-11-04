@@ -114,6 +114,10 @@ section {
   }
 }
 
+.required {
+  color: red;
+}
+
 @media screen {
   @media (min-width: 800px) {
     .with-right-sidebar {

@@ -6,6 +6,12 @@
   .custom-logo-link {
     display: block;
     line-height: 0;
+    text-align: center;
+
+    img {
+      max-height: 100px;
+      width: auto;
+    }
   }
 
   .site-title {
@@ -54,6 +60,10 @@
 
       .masthead {
         width: 25%;
+      }
+
+      .custom-logo-link {
+        text-align: left;
       }
 
       .header-box {

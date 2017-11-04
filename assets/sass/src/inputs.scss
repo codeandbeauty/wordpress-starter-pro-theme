@@ -3,4 +3,11 @@ select,
 textarea,
 button {
   max-width: 100%;
+  padding: 6px 12px;
+  border: 1px solid #464646;
+  @include borderbox;
+
+  &:focus {
+    border-color: #21759b;
+  }
 }
