@@ -21,8 +21,8 @@ function codeandbeauty_assets() {
 	 * Though the theme contains the main style.css at the main root, we are including the
 	 * style.css inside the assets folder.
 	 */
-	wp_enqueue_script( 'cad-waterfall', $src . 'external/js/responsive_waterfall.js', false, $version );
 	wp_enqueue_style( 'cad-style', $src . 'css/style.min.css', $css_dependencies, $version );
+	wp_enqueue_style( 'cad-style', get_template_directory_uri() . '/rtl.css' );
 }
 add_action( 'wp_enqueue_scripts', 'codeandbeauty_assets' );
 
@@ -140,5 +140,43 @@ if ( ! function_exists( 'codeandbeauty_get_featured_contents' ) ) :
 		$featured_contents['posts'] = get_posts( $posts_args );
 
 		return $featured_contents;
+	}
+endif;
+
+if ( ! function_exists( 'codeandbeauty_social_media_links' ) ) :
+	/**
+	 * Get the site's social media links
+	 *
+	 * @return void
+	 */
+	function codeandbeauty_social_media_links() {
+		$social_media = get_theme_mod( 'social_media', array() );
+
+		if ( ! empty( $social_media ) ) {
+			$social_media = array_filter( $social_media );
+			array_walk( $social_media, 'codeandbeauty_print_social_media' );
+		}
+	}
+
+	/**
+	 * Helper function to print custom social media links.
+	 *
+	 * @access private
+	 *
+	 * @param $url
+	 * @param $type
+	 */
+	function codeandbeauty_print_social_media( $url, $type ) {
+
+		if ( 'email' == $type ) {
+			$url = 'mailto:' . $url;
+		} else {
+			$url = esc_url_raw( $url );
+		}
+
+		$format = '<a href="%1$s" target="blank" rel="nofollow" class="social-media social-%2$s">' .
+		          '<span class="screen-reader-text">%2$s</span><span class="icon icon-%2$s"></span></a>';
+
+		printf( $format, $url, $type, ucfirst( $type ) );
 	}
 endif;

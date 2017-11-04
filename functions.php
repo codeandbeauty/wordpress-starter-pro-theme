@@ -123,6 +123,32 @@ if ( ! function_exists( 'codeandbeauty_customizer' ) ) :
 		);
 		$customizer->add_control( new WP_Customize_Control( $customizer, 'top_text', $control_args ) );
 
+		// Social media
+		$social_medias = array(
+			'facebook' => 'Facebook',
+			'twitter' => 'Twitter',
+			'linkedin' => 'LinkedIn',
+			'google-plus' => 'Google+',
+			'rss' => 'RSS',
+			'email' => 'Email',
+		);
+
+		foreach ( $social_medias as $social => $label ) {
+			$name = 'social_media[' . $social . ']';
+			$customizer->add_setting( $name );
+			$control_args = array(
+				'description' => $label,
+				'section' => 'site_info',
+			);
+
+			if ( 'facebook' == $social ) {
+				$control_args['label'] = __( 'Social Media Links', 'ui' );
+			}
+
+			$customizer->add_control( new WP_Customize_Control( $customizer, $name, $control_args ) );
+
+		}
+
 		/**
 		 * The bottom most part of our footer use footer text. Let's add an box area option
 		 * for our footer text.

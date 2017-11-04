@@ -33,6 +33,12 @@
     margin: 0;
   }
 
+  .header-box {
+    .widget {
+      margin: 5px 0;
+    }
+  }
+
   @media screen {
     @media (min-width: 700px) {
       .toggle {
@@ -53,9 +59,13 @@
       .header-box {
         width: 75%;
         margin: 0 0 0 -5px;
-        padding: 0 0 0 5px;
+        padding: 0 0 0 45px;
         vertical-align: bottom;
         text-align: right;
+
+        li {
+          display: inline-block;
+        }
       }
 
       #primary-menu {

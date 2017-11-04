@@ -1,0 +1,68 @@
+.social-media-links {
+  text-align: center;
+  display: block;
+  padding: 5px 0;
+}
+
+.social-media {
+  display: inline-block;
+  width: 25px;
+  padding: 0 8px;
+  line-height: 2;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  color: #f1f1f1;
+
+  .icon {
+    &:before {
+      content: '';
+      font-family: FontAwesome;
+    }
+  }
+
+  .icon-facebook {
+    &:before {
+      content: '\f09a';
+    }
+  }
+
+  .icon-twitter {
+    &:before {
+      content: '\f099';
+    }
+  }
+
+  .icon-linkedin {
+    &:before {
+      content: '\f0e1';
+    }
+  }
+
+  .icon-google-plus {
+    &:before {
+      content: '\f0d5';
+    }
+  }
+
+  .icon-email {
+    &:before {
+      content: '\f0e0';
+    }
+  }
+
+  .icon-rss {
+    &:before {
+      content: '\f09e';
+    }
+  }
+}
+
+@media screen {
+  @media (min-width: 600px) {
+    .social-media-links {
+      float: right;
+      text-align: right;
+    }
+  }
+}

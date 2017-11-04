@@ -755,6 +755,51 @@ td:last-child {
   margin-top: 10px;
 }
 
+.social-media-links {
+  text-align: center;
+  display: block;
+  padding: 5px 0;
+}
+
+.social-media {
+  display: inline-block;
+  width: 25px;
+  padding: 0 8px;
+  line-height: 2;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  color: #f1f1f1;
+}
+.social-media .icon:before {
+  content: '';
+  font-family: FontAwesome;
+}
+.social-media .icon-facebook:before {
+  content: '\f09a';
+}
+.social-media .icon-twitter:before {
+  content: '\f099';
+}
+.social-media .icon-linkedin:before {
+  content: '\f0e1';
+}
+.social-media .icon-google-plus:before {
+  content: '\f0d5';
+}
+.social-media .icon-email:before {
+  content: '\f0e0';
+}
+.social-media .icon-rss:before {
+  content: '\f09e';
+}
+
+@media screen and (min-width: 600px) {
+  .social-media-links {
+    float: right;
+    text-align: right;
+  }
+}
 /** FORM and form-fields **/
 input,
 select,
@@ -841,6 +886,9 @@ button {
 .header-section .widget {
   margin: 0;
 }
+.header-section .header-box .widget {
+  margin: 5px 0;
+}
 @media screen and (min-width: 700px) {
   .header-section .toggle {
     display: none;
@@ -857,9 +905,12 @@ button {
   .header-section .header-box {
     width: 75%;
     margin: 0 0 0 -5px;
-    padding: 0 0 0 5px;
+    padding: 0 0 0 45px;
     vertical-align: bottom;
     text-align: right;
+  }
+  .header-section .header-box li {
+    display: inline-block;
   }
   .header-section #primary-menu {
     margin: 15px 0;
