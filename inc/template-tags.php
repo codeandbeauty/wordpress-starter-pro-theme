@@ -21,6 +21,7 @@ function codeandbeauty_assets() {
 	 * Though the theme contains the main style.css at the main root, we are including the
 	 * style.css inside the assets folder.
 	 */
+	wp_enqueue_script( 'cad-waterfall', $src . 'external/js/responsive_waterfall.js', false, $version );
 	wp_enqueue_style( 'cad-style', $src . 'css/style.min.css', $css_dependencies, $version );
 }
 add_action( 'wp_enqueue_scripts', 'codeandbeauty_assets' );
@@ -89,5 +90,55 @@ if ( ! function_exists( 'codeandbeauty_posted_by' ) ) :
 		);
 
 		echo '<span class="byline"> ' . $byline . '</span>';
+	}
+endif;
+
+if ( ! function_exists( 'codeandbeauty_get_featured_contents' ) ) :
+	function codeandbeauty_get_featured_contents( $name ) {
+		$featured_contents = get_theme_mod( $name, array() );
+		$featured_contents = wp_parse_args( $featured_contents, array(
+			'post_type' => 'post',
+			'posts_per_page' => get_option( 'posts_per_page' ),
+			'view_more_label' => __( 'View More', 'ui' ),
+		));
+
+
+		$posts_args = array(
+			'post_type' => $featured_contents['post_type'],
+			'posts_per_page' => $featured_contents['posts_per_page'],
+		);
+
+		if ( ! empty( $featured_contents['tax'] ) ) {
+			$terms = explode( ',', $featured_contents['tax'] );
+			$terms = array_filter( $terms, 'trim' );
+
+			if ( 'post' == $featured_contents['post_type'] ) {
+				// Choose between category or post_tag
+				$posts_args['tax_query'] = array(
+					'relation' => 'OR',
+					array(
+						'taxonomy' => 'category',
+						'field' => 'name',
+						'terms' => $terms,
+					),
+					array(
+						'taxonomy' => 'post_tag',
+						'field' => 'name',
+						'terms' => $terms,
+					),
+				);
+			} else {
+
+				$post_object = get_post_type_object( $featured_contents['post_type'] );
+
+				if ( ! empty( $post_object ) && ! empty( $post_object->taxonomy ) ) {
+					//print_r( $post_object->taxonomy );
+				}
+			}
+		}
+
+		$featured_contents['posts'] = get_posts( $posts_args );
+
+		return $featured_contents;
 	}
 endif;

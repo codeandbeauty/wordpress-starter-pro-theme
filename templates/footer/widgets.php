@@ -5,7 +5,7 @@ endif;
 ?>
 <section class="footer-widgets">
 	<div class="container">
-		<div class="widgets-container">
+		<div class="widgets-container wf-container">
 			<?php dynamic_sidebar( 'footer-widgets' ); ?>
 		</div>
 	</div>

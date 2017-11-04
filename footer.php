@@ -8,7 +8,7 @@
 
 	</div><!-- end #main-content -->
 
-	<footer id="main-footer" role="contentinfo">
+	<footer id="main-footer" class="main-footer" role="contentinfo">
         <?php
         /**
          * Most page footer contains widgets. We use a widgets section at the top most of footer area
@@ -43,5 +43,6 @@
 </div><!-- end .site-inner -->
 </div><!-- end #page -->
 <?php wp_footer(); ?>
+
 </body>
 </html>

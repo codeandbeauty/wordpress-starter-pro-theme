@@ -25,6 +25,7 @@ function codeandbeauty_setup() {
 	// Add feature image support to posts and pages
 	add_theme_support( 'post-thumbnails', array( 'post', 'page' ) );
 	add_image_size( 'full-feature', 1024, 400, true );
+	add_image_size( 'full-feature-2', 1600, 600, true );
 
 	// Add custom image size for archive's posts
 	add_image_size( 'feature-image', 572, 372, true );
@@ -82,7 +83,7 @@ add_action( 'widgets_init', 'codeandbeauty_widgets_init' );
 
 if ( ! function_exists( 'codeandbeauty_customizer' ) ) :
 	/**
-	 * Custom customizer options are optional but are commonly practice in most themes.
+	 * Custom customizer options are optional but are commonly practice in most theme.
 	 * Here are some minimal customizer options that you can either remove or extend
 	 * at your disposal.
 	 *
@@ -135,6 +136,101 @@ if ( ! function_exists( 'codeandbeauty_customizer' ) ) :
 			'section' => 'site_info',
 		);
 		$customizer->add_control( new WP_Customize_Control( $customizer, 'footer_text', $control_args ) );
+
+		$customizer->add_panel( 'home-page', array(
+			'title' => __( 'Homepage', 'ui' ),
+			'description' => __( 'A custom homepage template.', 'ui' ),
+		) );
+
+		// Featured page
+		$customizer->add_section( 'featured_page', array(
+			'title' => __( 'Featured Page', 'ui' ),
+			'panel' => 'home-page',
+		) );
+		$customizer->add_setting( 'featured_page[page_id]' );
+		$control_args = array(
+			'label' => __( 'Select page', 'ui' ),
+			'type' => 'dropdown-pages',
+			'section' => 'featured_page',
+		);
+		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_page[page_id]', $control_args ) );
+
+		$customizer->add_setting( 'featured_page[read_more]' );
+		$control_args = array(
+			'label' => __( 'Read More Label', 'ui' ),
+			'section' => 'featured_page',
+			'input_attrs' => array(
+				'placeholder' => __( 'Continue reading...', 'ui' ),
+			),
+		);
+		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_page[read_more]', $control_args ) );
+
+		// Featured Contents
+		$customizer->add_section( 'featured_contents', array(
+			'title' => __( 'Featured Contents', 'ui' ),
+			'panel' => 'home-page',
+		) );
+		$customizer->add_setting( 'featured_contents[heading]' );
+		$control_args = array(
+			'label' => __( 'Heading', 'ui' ),
+			'sanitize_callback' => 'sanitize_textfield',
+			'section' => 'featured_contents',
+		);
+		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_contents[heading]', $control_args ) );
+
+		$customizer->add_setting( 'featured_contents[description]' );
+		$control_args = array(
+			'label' => __( 'Description', 'ui' ),
+			'type' => 'textarea',
+			'sanitize_callback' => 'sanitize_textarea',
+			'section' => 'featured_contents',
+		);
+		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_contents[description]', $control_args ) );
+
+		$post_types = get_post_types( array( 'public' => true ), 'objects' );
+
+		if ( $post_types ) {
+			foreach ( $post_types as $post_type => $object ) {
+				$post_types[ $post_type ] = $object->label;
+			}
+		}
+		unset( $post_types['page'], $post_types['attachment'] );
+
+		$customizer->add_setting( 'featured_contents[post_type]' );
+		$control_args = array(
+			'label' => __( 'Content type', 'ui' ),
+			'type' => 'select',
+			'section' => 'featured_contents',
+			'choices' => $post_types,
+		);
+		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_contents[post_type]', $control_args ) );
+
+		$customizer->add_setting( 'featured_contents[tax]' );
+		$control_args = array(
+			'label' => __( 'Category, Tags, or custom Taxonomy', 'ui' ),
+			'description' => __( 'Separate each with comma. (i.e. Apple, Orange)', 'ui' ),
+			'section' => 'featured_contents',
+		);
+		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_contents[tax]', $control_args ) );
+
+		$customizer->add_setting( 'featured_contents[posts_per_page]' );
+		$control_args = array(
+			'label' => __( 'Number of items', 'ui' ),
+			'sanitize_callback' => 'intval',
+			'section' => 'featured_contents',
+		);
+		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_contents[posts_per_page]', $control_args ) );
+
+		$customizer->add_setting( 'featured_contents[view_more]' );
+		$control_args = array(
+			'label' => __( 'View More label', 'ui' ),
+			'sanitize_callback' => 'sanitize_textfield',
+			'section' => 'featured_contents',
+			'input_attrs' => array(
+				'placeholder' => __( 'View More', 'wpui' ),
+			),
+		);
+		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_contents[view_more]', $control_args ) );
 	}
 	add_action( 'customize_register', 'codeandbeauty_customizer' );
 endif;

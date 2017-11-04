@@ -1,0 +1,52 @@
+.footer-widgets {
+  .wf-column {
+    float: left;
+  }
+  .widget {
+    margin: 0 0 25px 0;
+    color: #f1f1f1;
+
+    a {
+      color: #f1f1f1;
+
+      &:hover {
+        color: #ffffff;
+      }
+    }
+  }
+
+  .widget-title {
+    border-bottom: 6px double #999;
+  }
+
+  .inner-widget {
+    @include clearfix;
+  }
+
+  @media screen {
+    @media (min-width: 700px) {
+      .widgets-container {
+        margin: 0 -25px;
+      }
+
+      .widget {
+        float: left;
+        width: 50%;
+        padding: 0 25px;
+        @include borderbox;
+      }
+    }
+
+    @media (min-width: 800px) {
+      .widget {
+        width: $width/12*4;
+      }
+    }
+
+    @media (min-width: 1128px) {
+      .widget {
+        width: $width/12*3;
+      }
+    }
+  }
+}

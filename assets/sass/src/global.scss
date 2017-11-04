@@ -24,6 +24,25 @@ section {
   padding: 25px 0;
 }
 
+.section-header {
+  text-align: center;
+  padding-bottom: 25px;
+}
+
+.section-title {
+  font-size: 2.4em;
+  font-family: "Arial Black", sans-serif;
+  margin-bottom: 0;
+
+  &:after {
+    content: '';
+    display: block;
+    border-top: 3px double #d54e21;
+    width: 10%;
+    margin: 0 auto;
+  }
+}
+
 .container {
   max-width: $max_width;
   margin: 0 auto;
