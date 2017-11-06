@@ -22,3 +22,15 @@ Parameters:
 ````
 $ grunt create-theme --folder=my-new-theme --slug=mynewtheme --domain=my
 ````
+
+* Using Gulp */
+````
+$ grunt create-theme --folder=my-new-theme --slug=mynewtheme --domain=my
+````
+
+What the command do?
+* It generate a new theme inside /wp-content/themes directory
+* It replaces all required prefixes, slugs, and/or text domain.
+
+What's next?
+* Start building your pro WordPress theme!*
