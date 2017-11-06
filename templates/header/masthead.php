@@ -17,16 +17,16 @@
 
 		<div class="header-box">
 			<?php if ( is_active_sidebar( 'header-box' ) ) : ?>
-                <div class="header-box-widgets">
+				<div class="header-box-widgets">
 					<?php dynamic_sidebar( 'header-box' ); ?>
-                </div>
+				</div>
 			<?php endif; ?>
 
 			<?php if ( has_nav_menu( 'primary' ) ) : ?>
 
-				<nav id="primary-menu" class="primary-menu" role="navigation" aria-label="<?php _e( 'Primary Menu', 'ui' ); ?>">
+				<nav id="primary-menu" class="primary-menu" role="navigation" aria-label="<?php _e( 'Primary Menu', 'TEXTDOMAIN' ); ?>">
 					<button type="button" class="toggle toggle-menu" data-target="#primary-menu-container">
-						<span class="menu-label"><?php _e( 'Menu', 'ui' ); ?></span>
+						<span class="menu-label"><?php _e( 'Menu', 'TEXTDOMAIN' ); ?></span>
 						<i class="icon icon-menu"></i>
 						<i class="icon icon-cross"></i>
 					</button>
@@ -34,8 +34,8 @@
 					<?php
 					wp_nav_menu( array(
 						'theme_location' => 'primary',
-						'fallback_cb' => false,
-						'container_id' => 'primary-menu-container',
+						'fallback_cb'    => false,
+						'container_id'   => 'primary-menu-container',
 					) );
 					?>
 				</nav>

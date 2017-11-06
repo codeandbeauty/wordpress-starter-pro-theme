@@ -17,7 +17,7 @@ module.exports = function(grunt) {
  	// Load all grunt tasks.
  	require( 'load-grunt-tasks' )(grunt);
 
- 	var buildtime, conf, pkg;
+ 	var buildtime, conf, pkg, banner;
 
  	buildtime = new Date().toISOString();
 
@@ -25,24 +25,45 @@ module.exports = function(grunt) {
  	    js_folder: 'assets/js/',
  	    js_files: [
  	        'Gruntfile.js',
+ 	        // Include js files that require validation here ...
  	    ],
+ 	    js_files_concat: {
+ 	        // Include files that will be merge into 1
+ 	        // Example: `admin.js: [ ...list of file ]`
+ 	    },
  	    sass_folder: 'assets/sass/',
  	    css_folder: 'assets/css/',
  	    css_files: {
+ 	        'assets/css/normalize.css': 'assets/sass/normalize.scss',
  	        'assets/css/style.css': 'assets/sass/style.scss'
  	    },
+ 	    php_files: [
+ 	        '*.php',
+ 	        'inc/*.php',
+ 	        'inc/**/*.php',
+ 	        'templates/*.php',
+ 	        'templates/**/*.php',
+ 	        'tests/*.php',
+ 	        'tests/php/*.php',
+ 	        'tests/php/**/*.php'
+ 	    ],
  	    translation: {
  	        dir: 'language/',
  	        ignore_files: [
                 '(^.php)',	  // Ignore non-php files.
- 				'unit-test/', // Upgrade tests
+ 				'tests/', // Upgrade tests
  				'node_modules/',
  				'.sass-cache' // In case .sass-cache get's generated
  	        ],
- 	        textdomain: 'cad'
+ 	        textdomain: 'TEXTDOMAIN'
  	    }
  	};
  	pkg = grunt.file.readJSON('package.json');
+ 	banner = '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
+	    ' * <%= pkg.homepage %>\n' +
+		' * Copyright (c) <%= grunt.template.today("yyyy") %>;\n' +
+		' * Licensed GPLv2+' +
+		' */\n';
 
  	grunt.initConfig({
  	    pkg: pkg,
@@ -91,11 +112,7 @@ module.exports = function(grunt) {
 					extDot: 'last'
 				}],
 				options: {
-					banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-						' * <%= pkg.homepage %>\n' +
-						' * Copyright (c) <%= grunt.template.today("yyyy") %>;' +
-						' * Licensed GPLv2+' +
-						' */\n',
+					banner: banner,
 					mangle: {
 						except: ['jQuery']
 					}
@@ -136,11 +153,7 @@ module.exports = function(grunt) {
 		// CSS: Minify css files (create a .min.css file).
 		cssmin: {
 			options: {
-				banner: '/*! <%= pkg.title %> - v<%= pkg.version %>\n' +
-					' * <%= pkg.homepage %>\n' +
-					' * Copyright (c) <%= grunt.template.today("yyyy") %>;' +
-					' * Licensed GPLv2+' +
-					' */\n'
+				banner: banner
 			},
 			minify: {
 				expand: true,
@@ -163,9 +176,9 @@ module.exports = function(grunt) {
 					potFilename: conf.translation.textdomain + '.pot',
 					potHeaders: {
 						'poedit': true, // Includes common Poedit headers.
-						'language-team': pkg.author_info.name + ' <' + pkg.author_info.email + '>',
-						'report-msgid-bugs-to': pkg.author_info.report_bugs_to,
-						'last-translator': pkg.author_info.name + ' <' + pkg.author_info.email + '>',
+						'language-team': pkg.author + ' <' + pkg.author_email + '>',
+						'report-msgid-bugs-to': pkg.author_uri,
+						'last-translator': pkg.author + ' <' + pkg.author_email + '>',
 						'x-generator': 'grunt-wp-i18n',
 						'x-poedit-keywordslist': true // Include a list of all possible gettext functions.
 					},
@@ -220,20 +233,11 @@ module.exports = function(grunt) {
 			sniff: {
 				src: conf.php_files,
 				options: {
-					bin: '../../../../../phpcs/scripts/phpcs',
+					bin: '../../../../../../phpcs/bin/phpcs',
 					standard: 'WordPress-Core',
 					verbose: true
 				}
 			}
-		},
-
-		phpcbf: {
-			options: {
-				noPatch: true,
-				bin: '../../../../../phpcs/scripts/phpcs',
-				standard: 'WordPress-Core'
-			},
-			main: conf.php_files
 		},
 
 		// PHP: Unit tests.
@@ -257,6 +261,9 @@ module.exports = function(grunt) {
 
  	// Validate and compile sass files
  	grunt.registerTask( 'css', ['sass', 'autoprefixer', 'cssmin'] );
+
+    // Validate php files
+    grunt.registerTask( 'php', ['phplint', 'phpcs'] );
 
  	// Generate translation
  	grunt.registerTask( 'makepot', ['makepot'] );

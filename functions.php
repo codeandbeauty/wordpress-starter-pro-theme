@@ -15,26 +15,23 @@ function codeandbeauty_setup() {
 
 	// This theme's uses custom logo
 	$custom_logo_args = array(
-		'height' => 160,
+		'height'      => 160,
 		'flex-height' => true,
-		'flex-width' => true,
+		'flex-width'  => true,
 		'header-text' => array( 'site-title', 'site-description' ),
 	);
 	add_theme_support( 'custom-logo', $custom_logo_args );
 
-	// Add feature image support to posts and pages
+	// Add image sizes
 	add_theme_support( 'post-thumbnails', array( 'post', 'page' ) );
 	add_image_size( 'full-feature', 1024, 400, true );
 	add_image_size( 'full-feature-2', 1600, 600, true );
-
-	// Add custom image size for archive's posts
 	add_image_size( 'feature-image', 572, 372, true );
 
 	// This theme uses 3 menu locations
 	register_nav_menus( array(
-		'top-menu' => __( 'Top Menu', 'ui' ),
-		'primary' => __( 'Primary Menu', 'ui' ),
-		'main' => __( 'Main Navigation', 'ui' ),
+		'primary'      => __( 'Primary Menu', 'ui' ),
+		'main'         => __( 'Main Navigation', 'ui' ),
 		'footer-links' => __( 'Footer Links', 'ui' ),
 	) );
 
@@ -53,37 +50,37 @@ add_action( 'after_setup_theme', 'codeandbeauty_setup' );
 function codeandbeauty_widgets_init() {
 	$sidebar_args = array(
 		'before_widget' => '<aside id="%1$s" class="widget %2$s"><div class="inner-widget">',
-		'after_widget' => '</div></aside>',
-		'before_title' => '<h3 class="widget-title">',
-		'after_title' => '</h3>',
+		'after_widget'  => '</div></aside>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
 	);
 
 	// Header Box
 	register_sidebar( wp_parse_args( array(
-		'id' => 'header-box',
-		'name' => __( 'Header Box', 'ui' ),
-		'description' => __( 'Visible at the top-right corner of your page.', 'ui' ),
+		'id'          => 'header-box',
+		'name'        => __( 'Header Box', 'TEXTDOMAIN' ),
+		'description' => __( 'Visible at the top-right corner of your page.', 'TEXTDOMAIN' ),
 	), $sidebar_args ) );
 
 	// Left Sidebar
 	register_sidebar( wp_parse_args( array(
-		'id' => 'left-sidebar',
-		'name' => __( 'Left Sidebar', 'ui' ),
-		'description' => __( 'Visible at the left side corner of your page.', 'ui' ),
+		'id'          => 'left-sidebar',
+		'name'        => __( 'Left Sidebar', 'TEXTDOMAIN' ),
+		'description' => __( 'Visible at the left side corner of your page.', 'TEXTDOMAIN' ),
 	), $sidebar_args ) );
 
 	// Right sidebar
 	register_sidebar( wp_parse_args( array(
-		'id' => 'right-sidebar',
-		'name' => __( 'Right Sidebar', 'ui' ),
-		'description' => __( 'Visible at the right side corner of your page.', 'ui' ),
+		'id'          => 'right-sidebar',
+		'name'        => __( 'Right Sidebar', 'TEXTDOMAIN' ),
+		'description' => __( 'Visible at the right side corner of your page.', 'TEXTDOMAIN' ),
 	), $sidebar_args ) );
 
 	// Footer Widgets
 	register_sidebar( wp_parse_args( array(
-		'id' => 'footer-widgets',
-		'name' => __( 'Footer Widgets', 'ui' ),
-		'description' => __( 'Visible at the bottom of your page.', 'ui' ),
+		'id'          => 'footer-widgets',
+		'name'        => __( 'Footer Widgets', 'TEXTDOMAIN' ),
+		'description' => __( 'Visible at the bottom of your page.', 'TEXTDOMAIN' ),
 	), $sidebar_args ) );
 }
 add_action( 'widgets_init', 'codeandbeauty_widgets_init' );
@@ -103,7 +100,7 @@ if ( ! function_exists( 'codeandbeauty_customizer' ) ) :
 		 */
 		$customizer->add_setting( 'mini_logo' );
 		$control_args = array(
-			'label' => __( 'Mini Logo', 'ui' ),
+			'label'   => __( 'Mini Logo', 'TEXTDOMAIN' ),
 			'section' => 'title_tagline',
 		);
 		$customizer->add_control( new WP_Customize_Image_Control( $customizer, 'mini_logo', $control_args ) );
@@ -113,7 +110,7 @@ if ( ! function_exists( 'codeandbeauty_customizer' ) ) :
 		 * needed in our theme.
 		 */
 		$customizer->add_section( 'site_info', array(
-			'title' => __( 'Site Info', 'ui' ),
+			'title' => __( 'Site Info', 'TEXTDOMAIN' ),
 		));
 
 		/**
@@ -122,22 +119,22 @@ if ( ! function_exists( 'codeandbeauty_customizer' ) ) :
 		 */
 		$customizer->add_setting( 'top_text' );
 		$control_args = array(
-			'label' => __( 'Top Text', 'ui' ),
-			'description' => __( 'Add a single line text or shortcode that will be visible at the top-left corner of your page.', 'ui' ),
-			'section' => 'site_info',
-			'type' => 'textarea',
+			'label'             => __( 'Top Text', 'TEXTDOMAIN' ),
+			'description'       => __( 'Add a single line text or shortcode that will be visible at the top-left corner of your page.', 'TEXTDOMAIN' ),
+			'section'           => 'site_info',
+			'type'              => 'textarea',
 			'sanitize_callback' => 'sanitize_textarea',
 		);
 		$customizer->add_control( new WP_Customize_Control( $customizer, 'top_text', $control_args ) );
 
 		// Social media
 		$social_medias = array(
-			'facebook' => 'Facebook',
-			'twitter' => 'Twitter',
-			'linkedin' => 'LinkedIn',
+			'facebook'    => 'Facebook',
+			'twitter'     => 'Twitter',
+			'linkedin'    => 'LinkedIn',
 			'google-plus' => 'Google+',
-			'rss' => 'RSS',
-			'email' => 'Email',
+			'rss'         => 'RSS',
+			'email'       => 'Email',
 		);
 
 		foreach ( $social_medias as $social => $label ) {
@@ -145,11 +142,11 @@ if ( ! function_exists( 'codeandbeauty_customizer' ) ) :
 			$customizer->add_setting( $name );
 			$control_args = array(
 				'description' => $label,
-				'section' => 'site_info',
+				'section'     => 'site_info',
 			);
 
 			if ( 'facebook' == $social ) {
-				$control_args['label'] = __( 'Social Media Links', 'ui' );
+				$control_args['label'] = __( 'Social Media Links', 'TEXTDOMAIN' );
 			}
 
 			$customizer->add_control( new WP_Customize_Control( $customizer, $name, $control_args ) );
@@ -162,61 +159,61 @@ if ( ! function_exists( 'codeandbeauty_customizer' ) ) :
 		 */
 		$customizer->add_setting( 'footer_text' );
 		$control_args = array(
-			'label' => __( 'Footer/Copyright Text', 'ui' ),
-			'description' => __( 'Write your site\'s copyright or any useful text that will be visible at the bottom most part of the page.', 'ui' ),
-			'type' => 'textarea',
+			'label'             => __( 'Footer/Copyright Text', 'TEXTDOMAIN' ),
+			'description'       => __( 'Write your site\'s copyright or any useful text that will be visible at the bottom most part of the page.', 'TEXTDOMAIN' ),
+			'type'              => 'textarea',
 			'sanitize_callback' => 'sanitize_textarea',
-			'section' => 'site_info',
+			'section'           => 'site_info',
 		);
 		$customizer->add_control( new WP_Customize_Control( $customizer, 'footer_text', $control_args ) );
 
 		$customizer->add_panel( 'home-page', array(
-			'title' => __( 'Homepage', 'ui' ),
-			'description' => __( 'A custom homepage template.', 'ui' ),
+			'title'       => __( 'Homepage', 'TEXTDOMAIN' ),
+			'description' => __( 'A custom homepage template.', 'TEXTDOMAIN' ),
 		) );
 
 		// Featured page
 		$customizer->add_section( 'featured_page', array(
-			'title' => __( 'Featured Page', 'ui' ),
+			'title' => __( 'Featured Page', 'TEXTDOMAIN' ),
 			'panel' => 'home-page',
 		) );
 		$customizer->add_setting( 'featured_page[page_id]' );
 		$control_args = array(
-			'label' => __( 'Select page', 'ui' ),
-			'type' => 'dropdown-pages',
+			'label'   => __( 'Select page', 'TEXTDOMAIN' ),
+			'type'    => 'dropdown-pages',
 			'section' => 'featured_page',
 		);
 		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_page[page_id]', $control_args ) );
 
 		$customizer->add_setting( 'featured_page[read_more]' );
 		$control_args = array(
-			'label' => __( 'Read More Label', 'ui' ),
-			'section' => 'featured_page',
+			'label'       => __( 'Read More Label', 'TEXTDOMAIN' ),
+			'section'     => 'featured_page',
 			'input_attrs' => array(
-				'placeholder' => __( 'Continue reading...', 'ui' ),
+				'placeholder' => __( 'Continue reading...', 'TEXTDOMAIN' ),
 			),
 		);
 		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_page[read_more]', $control_args ) );
 
 		// Featured Contents
 		$customizer->add_section( 'featured_contents', array(
-			'title' => __( 'Featured Contents', 'ui' ),
+			'title' => __( 'Featured Contents', 'TEXTDOMAIN' ),
 			'panel' => 'home-page',
 		) );
 		$customizer->add_setting( 'featured_contents[heading]' );
 		$control_args = array(
-			'label' => __( 'Heading', 'ui' ),
+			'label'             => __( 'Heading', 'TEXTDOMAIN' ),
 			'sanitize_callback' => 'sanitize_textfield',
-			'section' => 'featured_contents',
+			'section'           => 'featured_contents',
 		);
 		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_contents[heading]', $control_args ) );
 
 		$customizer->add_setting( 'featured_contents[description]' );
 		$control_args = array(
-			'label' => __( 'Description', 'ui' ),
-			'type' => 'textarea',
+			'label'             => __( 'Description', 'TEXTDOMAIN' ),
+			'type'              => 'textarea',
 			'sanitize_callback' => 'sanitize_textarea',
-			'section' => 'featured_contents',
+			'section'           => 'featured_contents',
 		);
 		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_contents[description]', $control_args ) );
 
@@ -231,8 +228,8 @@ if ( ! function_exists( 'codeandbeauty_customizer' ) ) :
 
 		$customizer->add_setting( 'featured_contents[post_type]' );
 		$control_args = array(
-			'label' => __( 'Content type', 'ui' ),
-			'type' => 'select',
+			'label'   => __( 'Content type', 'TEXTDOMAIN' ),
+			'type'    => 'select',
 			'section' => 'featured_contents',
 			'choices' => $post_types,
 		);
@@ -240,30 +237,38 @@ if ( ! function_exists( 'codeandbeauty_customizer' ) ) :
 
 		$customizer->add_setting( 'featured_contents[tax]' );
 		$control_args = array(
-			'label' => __( 'Category, Tags, or custom Taxonomy', 'ui' ),
-			'description' => __( 'Separate each with comma. (i.e. Apple, Orange)', 'ui' ),
-			'section' => 'featured_contents',
+			'label'       => __( 'Category, Tags, or custom Taxonomy', 'TEXTDOMAIN' ),
+			'description' => __( 'Separate each with comma. (i.e. Apple, Orange)', 'TEXTDOMAIN' ),
+			'section'     => 'featured_contents',
 		);
 		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_contents[tax]', $control_args ) );
 
 		$customizer->add_setting( 'featured_contents[posts_per_page]' );
 		$control_args = array(
-			'label' => __( 'Number of items', 'ui' ),
+			'label'             => __( 'Number of items', 'TEXTDOMAIN' ),
 			'sanitize_callback' => 'intval',
-			'section' => 'featured_contents',
+			'section'           => 'featured_contents',
 		);
 		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_contents[posts_per_page]', $control_args ) );
 
 		$customizer->add_setting( 'featured_contents[view_more]' );
 		$control_args = array(
-			'label' => __( 'View More label', 'ui' ),
+			'label'             => __( 'View More label', 'TEXTDOMAIN' ),
 			'sanitize_callback' => 'sanitize_textfield',
-			'section' => 'featured_contents',
-			'input_attrs' => array(
-				'placeholder' => __( 'View More', 'wpui' ),
+			'section'           => 'featured_contents',
+			'input_attrs'       => array(
+				'placeholder' => __( 'View More', 'TEXTDOMAIN' ),
 			),
 		);
 		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_contents[view_more]', $control_args ) );
+
+		$customizer->add_setting( 'featured_contents[view_more_link]' );
+		$control_args = array(
+			'label'             => __( 'View More Url', 'TEXTDOMAIN' ),
+			'sanitize_callback' => 'sanitize_textfield',
+			'section'           => 'featured_contents',
+		);
+		$customizer->add_control( new WP_Customize_Control( $customizer, 'featured_contents[view_more_link]', $control_args ) );
 	}
 	add_action( 'customize_register', 'codeandbeauty_customizer' );
 endif;

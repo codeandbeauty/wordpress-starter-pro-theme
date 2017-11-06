@@ -1,5 +1,5 @@
 {
-  "name": "codenbeauty",
+  "name": "codeandbeauty-starter-theme",
   "version": "1.0.0",
   "title": "CodeAndBeauty Starter Theme",
   "description": "An open source WordPress starter theme.",
@@ -10,11 +10,7 @@
   },
   "author": "CodeAndBeauty",
   "author_email": "support@codeandbeauty.com",
-  "author_info": {
-    "name" : "CodeAndBeauty",
-    "email": "support@codeandbeauty.com",
-    "report_bugs_to": "http://www.codeandbeauty.com/contact"
-  },
+  "author_uri": "http://www.codeandbeauty.com/",
   "license": "GPL-2.0",
   "devDependencies": {
     "grunt": "^0.4.5",

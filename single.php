@@ -31,8 +31,8 @@ get_header(); ?>
 						endif;
 
 						the_post_navigation( array(
-							'prev_text' => '<span class="screen-reader-text">' . __( 'Previous Post', 'ui' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Previous', 'ui' ) . '</span> <span class="nav-title">%title</span>',
-							'next_text' => '<span class="screen-reader-text">' . __( 'Next Post', 'ui' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Next', 'ui' ) . '</span> <span class="nav-title">%title</span>',
+							'prev_text' => '<span class="screen-reader-text">' . __( 'Previous Post', 'TEXTDOMAIN' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Previous', 'TEXTDOMAIN' ) . '</span> <span class="nav-title">%title</span>',
+							'next_text' => '<span class="screen-reader-text">' . __( 'Next Post', 'TEXTDOMAIN' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Next', 'TEXTDOMAIN' ) . '</span> <span class="nav-title">%title</span>',
 						) );
 					endwhile;
 					?>
@@ -51,4 +51,5 @@ get_header(); ?>
 	</div>
 </section>
 
-<?php get_footer();
+<?php
+get_footer();

@@ -1,4 +1,10 @@
 <?php
+/**
+ * The featured page template use in custom home page.
+ *
+ * @package WordPress
+ * @subpackage CodeAndBeauty
+ */
 global $post;
 
 $featured_page = get_theme_mod( 'featured_page', array() );
@@ -8,7 +14,7 @@ if ( empty( $featured_page ) && ! empty( $featured_page['page_id'] ) ) :
 endif;
 
 if ( empty( $featured_page['read_more'] ) ) :
-    $featured_page['read_more'] = __( 'Continue reading...', 'ui' );
+	$featured_page['read_more'] = __( 'Continue reading...', 'TEXTDOMAIN' );
 endif;
 
 $post = get_post( (int) $featured_page['page_id'] );
@@ -22,29 +28,30 @@ setup_postdata( $post );
 		</div>
 	<?php endif; ?>
 
-    <div class="featured-content-container">
-        <div class="container">
-            <header class="feature-header">
-		        <?php the_title( '<h2 class="feature-title">', '</h2>' ); ?>
-            </header>
+	<div class="featured-content-container">
+		<div class="container">
+			<header class="feature-header">
+				<?php the_title( '<h2 class="feature-title">', '</h2>' ); ?>
+			</header>
 
-            <div class="featured-content">
-		        <?php the_excerpt(); ?>
-            </div>
+			<div class="featured-content">
+				<?php the_excerpt(); ?>
+			</div>
 
-            <?php if ( ! empty( $featured_page['read_more'] ) ) :
-            /**
-             * We'll set the footer only if read more label is set.
-             */
-            ?>
-            <div class="featured-footer">
-                <a href="<?php echo esc_url_raw( get_permalink() ); ?>" rel="bookmark" class="url read-more">
-		            <?php echo $featured_page['read_more']; ?>
-                </a>
-            </div>
-            <?php endif; ?>
-        </div>
-    </div>
+			<?php
+			if ( ! empty( $featured_page['read_more'] ) ) :
+				/**
+				 * We'll set the footer only if read more label is set.
+				 */
+			?>
+			<div class="featured-footer">
+				<a href="<?php echo esc_url_raw( get_permalink() ); ?>" rel="bookmark" class="url read-more">
+					<?php echo $featured_page['read_more']; ?>
+				</a>
+			</div>
+			<?php endif; ?>
+		</div>
+	</div>
 </section>
 
 <?php

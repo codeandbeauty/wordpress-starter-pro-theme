@@ -3,7 +3,7 @@ global $post;
 
 $featured_contents = codeandbeauty_get_featured_contents( 'featured_contents' );
 if ( empty( $featured_contents ) ) :
-    return; // Bail if nothing is set
+	return; // Bail if nothing is set
 endif;
 
 ?>
@@ -40,11 +40,11 @@ endif;
 			</div>
 
 			<?php if ( ! empty( $featured_contents['view_more_link'] ) ) : ?>
-                <div class="section-footer">
-                    <a href="<?php echo esc_url_raw( $featured_contents['view_more_link'] ); ?>" class="view-more">
+				<div class="section-footer">
+					<a href="<?php echo esc_url_raw( $featured_contents['view_more_link'] ); ?>" class="view-more">
 						<?php echo $featured_contents['view_more_label']; ?>
-                    </a>
-                </div>
+					</a>
+				</div>
 			<?php endif; ?>
 
 		<?php endif; ?>

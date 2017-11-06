@@ -54,8 +54,8 @@ get_header(); ?>
 					if ( ! is_singular() ) :
 
 						the_posts_pagination( array(
-							'prev_text' => '<span class="screen-reader-text">' . __( 'Previous page', 'ui' ) . '</span><span class="meta-prev">' . __( 'Previous', 'ui' ) . '</span>',
-							'next_text' => '<span class="screen-reader-text">' . __( 'Next page', 'ui' ) . '</span><span class="meta-next">' . __( 'Next', 'ui' ) . '</span>',
+							'prev_text'          => '<span class="screen-reader-text">' . __( 'Previous page', 'ui' ) . '</span><span class="meta-prev">' . __( 'Previous', 'ui' ) . '</span>',
+							'next_text'          => '<span class="screen-reader-text">' . __( 'Next page', 'ui' ) . '</span><span class="meta-next">' . __( 'Next', 'ui' ) . '</span>',
 							'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'ui' ) . ' </span>',
 						) );
 
@@ -75,12 +75,13 @@ get_header(); ?>
 				<?php endif; ?>
 			</div>
 
-            <div class="right-container">
-	            <?php get_sidebar( 'right' ); ?>
-            </div>
+			<div class="right-container">
+				<?php get_sidebar( 'right' ); ?>
+			</div>
 
 		</div>
 	</div>
 </section>
 
-<?php get_footer();
+<?php
+get_footer();

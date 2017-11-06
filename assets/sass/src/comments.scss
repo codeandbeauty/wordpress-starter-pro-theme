@@ -1,4 +1,16 @@
 .comment-area {
+  &:before {
+    content: '';
+    display: block;
+    border: {
+      style: double;
+      color: #464646;
+      width: 5px 0;
+    }
+    width: 20%;
+    margin: 25px 0;
+  }
+
   .comment-respond {
     margin: 15px 0;
   }
@@ -8,5 +20,86 @@
   }
   label {
     display: block;
+  }
+
+  .comment-form-comment {
+    textarea {
+      width: 100%;
+    }
+  }
+
+  .comment-list {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+  }
+
+  .comment-body {
+    margin: 0 0 25px 0;
+    box-shadow: -5px 1px 5px 0 #ccc;
+    padding: 15px 25px;
+    @include radius(3px);
+  }
+
+  .avatar {
+    float: left;
+    margin: 0 15px 5px 0;
+  }
+
+  .comment-metadata {
+    display: block;
+    text-align: right;
+    font-size: 0.8em;
+
+    .edit-link {
+      display: inline-block;
+      margin-left: 10px;
+      background-color: #f1f1f1;
+      padding: 4px 12px;
+      border-radius: 3px;
+
+      a:after {
+        content: '\f044';
+        font-family: FontAwesome;
+        display: inline-block;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .reply {
+    text-align: right;
+    text-transform: uppercase;
+
+    a:after {
+      content: '\f112';
+      font-family: FontAwesome;
+      display: inline-block;
+      margin-left: 5px;
+    }
+  }
+
+  @media screen {
+    @media (min-width: 700px) {
+      .comment-form-comment {
+        float: left;
+        width: 50%;
+        padding-right: 25px;
+        @include borderbox;
+      }
+
+      .comment-form-author,
+      .comment-form-email,
+      .comment-form-url {
+        float: left;
+        width: 50%;
+        margin-bottom: 0;
+        @include borderbox;
+      }
+
+      .form-submit {
+        @include clearfix;
+      }
+    }
   }
 }

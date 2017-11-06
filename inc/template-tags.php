@@ -9,20 +9,20 @@
  * Set stylesheets and javascript assets.
  */
 function codeandbeauty_assets() {
-	$src = get_template_directory_uri() . '/assets/';
-	$version = '1.0.0'; // Always check and change the version number whenever you update your theme.
+	$src              = get_template_directory_uri() . '/assets/';
+	$version          = '1.0.0'; // Always check and change the version number whenever you update your theme.
 	$css_dependencies = array( 'dashicons' );
-	$js_dependencies = array( 'jquery' );
+	$js_dependencies  = array( 'jquery' );
 
-	wp_enqueue_style( 'cad-google-font', 'https://fonts.googleapis.com/css?family=Montserrat' );
-	wp_enqueue_style( 'cad-font-awesome', $src . 'external/css/font-awesome.min.css' );
+	wp_enqueue_style( 'TEXTDOMAIN-google-font', 'https://fonts.googleapis.com/css?family=Montserrat' );
+	wp_enqueue_style( 'TEXTDOMAIN-font-awesome', $src . 'external/css/font-awesome.min.css' );
 
 	/**
 	 * Though the theme contains the main style.css at the main root, we are including the
 	 * style.css inside the assets folder.
 	 */
-	wp_enqueue_style( 'cad-style', $src . 'css/style.min.css', $css_dependencies, $version );
-	wp_enqueue_style( 'cad-style', get_template_directory_uri() . '/rtl.css' );
+	wp_enqueue_style( 'TEXTDOMAIN-normalize-css', $src . 'css/normalize.min.css', false, $version );
+	wp_enqueue_style( 'TEXTDOMAIN-style', $src . 'css/style.min.css', $css_dependencies, $version );
 }
 add_action( 'wp_enqueue_scripts', 'codeandbeauty_assets' );
 
@@ -34,7 +34,7 @@ if ( ! function_exists( 'codeandbeauty_mini_logo' ) ) :
 		$url = get_theme_mod( 'mini_logo' );
 
 		if ( ! empty( $url ) ) {
-			$img = sprintf( '<img src="%1$s" class="mini-logo" alt="%2$s" />', esc_url_raw( $url ), __( 'Mini logo', 'ui' ) );
+			$img = sprintf( '<img src="%1$s" class="mini-logo" alt="%2$s" />', esc_url_raw( $url ), __( 'Mini logo', 'TEXTDOMAIN' ) );
 
 			printf( '<a href="%1$s" rel="bookmark" class="mini-logo-link">%2$s</a>', esc_url( home_url( '/' ) ), $img );
 		}
@@ -55,6 +55,7 @@ if ( ! function_exists( 'codeandbeauty_posted_date' ) ) :
 	function codeandbeauty_posted_date( $date_format = false ) {
 		$date_format = ! $date_format ? DATE_W3C : $date_format;
 		$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
+
 		if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 			$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
 		}
@@ -67,8 +68,8 @@ if ( ! function_exists( 'codeandbeauty_posted_date' ) ) :
 		);
 
 		$postdate = sprintf(
-		/* translators: %s: post date */
-			__( '<span class="screen-reader-text">Posted on</span> %s', 'ui' ),
+			/* translators: %s: post date */
+			__( '<span class="screen-reader-text">Posted on</span> %s', 'TEXTDOMAIN' ),
 			'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 		);
 
@@ -84,8 +85,8 @@ if ( ! function_exists( 'codeandbeauty_posted_by' ) ) :
 
 		// Get the author name; wrap it in a link.
 		$byline = sprintf(
-		/* translators: %s: post author */
-			__( 'by %s', 'ui' ),
+			/* translators: %s: post author */
+			__( 'by %s', 'TEXTDOMAIN' ),
 			'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . get_the_author() . '</a></span>'
 		);
 
@@ -97,14 +98,13 @@ if ( ! function_exists( 'codeandbeauty_get_featured_contents' ) ) :
 	function codeandbeauty_get_featured_contents( $name ) {
 		$featured_contents = get_theme_mod( $name, array() );
 		$featured_contents = wp_parse_args( $featured_contents, array(
-			'post_type' => 'post',
-			'posts_per_page' => get_option( 'posts_per_page' ),
-			'view_more_label' => __( 'View More', 'ui' ),
+			'post_type'       => 'post',
+			'posts_per_page'  => get_option( 'posts_per_page' ),
+			'view_more_label' => __( 'View More', 'TEXTDOMAIN' ),
 		));
 
-
 		$posts_args = array(
-			'post_type' => $featured_contents['post_type'],
+			'post_type'      => $featured_contents['post_type'],
 			'posts_per_page' => $featured_contents['posts_per_page'],
 		);
 
@@ -118,21 +118,33 @@ if ( ! function_exists( 'codeandbeauty_get_featured_contents' ) ) :
 					'relation' => 'OR',
 					array(
 						'taxonomy' => 'category',
-						'field' => 'name',
-						'terms' => $terms,
+						'field'    => 'name',
+						'terms'    => $terms,
 					),
 					array(
 						'taxonomy' => 'post_tag',
-						'field' => 'name',
-						'terms' => $terms,
+						'field'    => 'name',
+						'terms'    => $terms,
 					),
 				);
 			} else {
+				$posts_args['tax_query'] = array(
+					'relation' => 'AND',
+				);
 
 				$post_object = get_post_type_object( $featured_contents['post_type'] );
 
 				if ( ! empty( $post_object ) && ! empty( $post_object->taxonomy ) ) {
-					//print_r( $post_object->taxonomy );
+
+					if ( ! empty( $post_object->taxonomy ) ) {
+						foreach ( $post_object->taxonomy as $taxonomy ) {
+							$post_args[] = array(
+								'taxonomy' => $taxonomy,
+								'field'    => 'name',
+								'terms'    => $terms,
+							);
+						}
+					}
 				}
 			}
 		}
@@ -174,8 +186,8 @@ if ( ! function_exists( 'codeandbeauty_social_media_links' ) ) :
 			$url = esc_url_raw( $url );
 		}
 
-		$format = '<a href="%1$s" target="blank" rel="nofollow" class="social-media social-%2$s">' .
-		          '<span class="screen-reader-text">%2$s</span><span class="icon icon-%2$s"></span></a>';
+		$format = '<a href="%1$s" target="blank" rel="nofollow" class="social-media social-%2$s">'
+				. '<span class="screen-reader-text">%2$s</span><span class="icon icon-%2$s"></span></a>';
 
 		printf( $format, $url, $type, ucfirst( $type ) );
 	}

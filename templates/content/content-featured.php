@@ -10,12 +10,12 @@
 			<?php the_title( '<h3 class="entry-title"><a href="' . esc_url_raw( get_permalink() ) . '" rel="bookmark">', '</a></h3>' ); ?>
 		</header>
 
-        <?php if ( ! has_post_thumbnail() ) : ?>
+		<?php if ( ! has_post_thumbnail() ) : ?>
 
-            <div class="entry-content">
-                <?php the_excerpt(); ?>
-            </div>
+			<div class="entry-content">
+				<?php the_excerpt(); ?>
+			</div>
 
-        <?php endif; ?>
+		<?php endif; ?>
 	</div>
 </article>
