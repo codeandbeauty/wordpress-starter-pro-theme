@@ -200,3 +200,35 @@ gulp.task( 'generate-zip', function() {
 		.pipe(gulp.dest('../'))
 		.pipe(notify({message: zipfile + ' file successfully generated!', onLast:true}));
 });
+
+gulp.task( 'create-theme', function(a) {
+    var argv, rename, replace, src, folder, slug, domain;
+
+    argv = require( 'yargs' ).argv;
+    rename = require( 'gulp-rename' );
+    replace = require( 'gulp-replace' );
+    src = [
+        '*',
+        '**',
+        '!node_modules/',
+        '!node_modules/*',
+        '!node_modules/**',
+        '!logs/*',
+        '!logs/',
+        '!.sass-cache/*',
+        '!.sass-cache/**',
+        '!.sass-cache/'
+    ];
+    folder = argv.folder;
+    slug = argv.slug;
+    domain = argv.domain ? argv.domain : slug;
+
+    gulp.src( src )
+        .pipe(rename(function(path){
+            path.basename = path.basename.replace( /codeandbeauty/g, slug );
+        }))
+        .pipe(replace( /codeandbeauty/g, slug))
+        .pipe(replace( /TEXTDOMAIN/g, domain))
+        .pipe(gulp.dest('../' + folder));
+});
+

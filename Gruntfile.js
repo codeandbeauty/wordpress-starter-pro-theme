@@ -17,7 +17,7 @@ module.exports = function(grunt) {
  	// Load all grunt tasks.
  	require( 'load-grunt-tasks' )(grunt);
 
- 	var buildtime, conf, pkg, banner;
+ 	var buildtime, conf, pkg, banner, theme_dir, theme_slug, theme_domain, theme_config;
 
  	buildtime = new Date().toISOString();
 
@@ -64,6 +64,32 @@ module.exports = function(grunt) {
 		' * Copyright (c) <%= grunt.template.today("yyyy") %>;\n' +
 		' * Licensed GPLv2+' +
 		' */\n';
+
+    theme_config = {
+	    expand: true,
+		src: [
+		    '*',
+		    '**',
+		    '!node_modules/*',
+		    '!node_modules/**',
+		    '!node_modules/',
+		    '!logs/*',
+		    '!logs/',
+		    '!.sass-cache/*',
+		    '!.sass-cache/**',
+		    '!.sass-cache/'
+		],
+		dest: '',
+		noEmpty: true,
+		options: {
+		    process: function(content) {
+                content = content.replace( /codeandbeauty/g, theme_slug );
+                content = content.replace( /TEXTDOMAIN/g, theme_domain );
+
+                return content;
+		    }
+		}
+	};
 
  	grunt.initConfig({
  	    pkg: pkg,
@@ -253,6 +279,10 @@ module.exports = function(grunt) {
 				staticBackup: false,
 				noGlobalsBackup: false
 			}
+		},
+
+		copy: {
+		    all: theme_config
 		}
  	});
 
@@ -272,4 +302,22 @@ module.exports = function(grunt) {
  	// Ensure that validation runs first before generating the release
  	// Ensure that the language gets regenerated
  	grunt.registerTask( 'generate-zip', ['js', 'css', 'makepot', 'compress'] );
+
+    grunt.registerTask( 'create-theme', 'Generating new theme...', function() {
+ 	    var folder, slug, domain;
+
+ 	    folder = grunt.option('folder');
+ 	    slug = grunt.option('slug');
+ 	    domain = grunt.option('domain');
+
+ 	    // Ensure that the name and slug doesn't contain spaces
+ 	    slug = slug.replace( / /g, '' );
+
+ 	    theme_config.dest = '../' + folder;
+ 	    theme_dir = folder;
+ 	    theme_slug = slug;
+ 	    theme_domain = domain;
+
+ 	    grunt.task.run( ['copy:all'] );
+ 	});
 };

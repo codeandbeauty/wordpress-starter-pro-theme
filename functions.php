@@ -30,9 +30,9 @@ function codeandbeauty_setup() {
 
 	// This theme uses 3 menu locations
 	register_nav_menus( array(
-		'primary'      => __( 'Primary Menu', 'ui' ),
-		'main'         => __( 'Main Navigation', 'ui' ),
-		'footer-links' => __( 'Footer Links', 'ui' ),
+		'primary'      => __( 'Primary Menu', 'TEXTDOMAIN' ),
+		'main'         => __( 'Main Navigation', 'TEXTDOMAIN' ),
+		'footer-links' => __( 'Footer Links', 'TEXTDOMAIN' ),
 	) );
 
 	// Enable background support
