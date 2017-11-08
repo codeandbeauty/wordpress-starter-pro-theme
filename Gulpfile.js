@@ -22,10 +22,10 @@ var gulp = require( 'gulp' ),
 		'!node_modules/**'
 	],
 	js_files = {
-	    'assets/js/build.js': [
+	    'build.js': [
 	        'assets/js/src/front/*.js'
 	    ],
-	    'assets/js/admin.js': [
+	    'admin.js': [
 	        'assets/js/src/common/*.js',
 	        'assets/js/src/admin/*.js'
 	    ]
@@ -109,7 +109,7 @@ gulp.task( 'js', function() {
 	        .pipe(concat(i))
 	        .pipe(gulp.dest( 'assets/js/' ))
 	        .on( 'finish', function() {
-	            gulp.src( i )
+	            gulp.src( ['assets/js/*.js', '!assets/js/*.min.js'] )
 	                .pipe(sourcemaps.init())
                     .pipe(uglify({preserveComments:'license'}))
                     .pipe(header(banner, banner_args))
