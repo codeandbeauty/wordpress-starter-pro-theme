@@ -465,6 +465,36 @@ button:focus {
 .header-section .header-box .widget {
   margin: 5px 0;
 }
+.header-section .toggle-menu {
+  font-size: 0.8em;
+  float: right;
+  border-color: #888;
+  background-color: #4d4d4d;
+  color: #fff;
+  line-height: 1;
+}
+.header-section .toggle-menu:hover {
+  background-color: #404040;
+}
+.header-section #primary-menu-container {
+  height: 34px;
+  overflow: hidden;
+}
+.header-section #primary-menu-container ul {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+}
+.header-section #primary-menu-container .sub-menu .menu-item {
+  font-size: 0.9em;
+}
+.header-section #primary-menu-toggle {
+  display: none;
+}
+.header-section :checked + #primary-menu-container {
+  height: 100%;
+  overflow: visible;
+}
 @media screen and (min-width: 700px) {
   .header-section .toggle {
     display: none;
@@ -496,9 +526,48 @@ button:focus {
   }
   .header-section .menu-item {
     display: inline-block;
+    vertial-align: top;
   }
   .header-section .menu-item:last-of-type {
     padding-right: 0;
+  }
+  .header-section #primary-menu-container {
+    height: 100%;
+    overflow: visible;
+  }
+  .header-section #primary-menu-container .sub-menu .menu-item a:after {
+    content: '';
+    position: relative;
+    left: 10px;
+    border-right: 1px solid #555;
+    border-left: 1px solid #333;
+  }
+  .header-section #primary-menu-container .sub-menu .sub-menu {
+    position: absolute;
+    min-width: 200px;
+    margin: 5px -12px;
+    background-color: #464646;
+    border: 1px solid #555;
+    padding: 5px 15px;
+    text-align: left;
+    z-index: -1;
+    opacity: 0;
+    -ms-transform: 0.4s;
+    transform: 0.4s;
+  }
+  .header-section #primary-menu-container .sub-menu .sub-menu .menu-item {
+    display: block;
+    border-bottom: 1px solid #555;
+  }
+  .header-section #primary-menu-container .sub-menu .sub-menu .menu-item a:after {
+    display: none;
+  }
+  .header-section #primary-menu-container .sub-menu .sub-menu .menu-item:last-of-type {
+    border: 0;
+  }
+  .header-section #primary-menu-container .sub-menu .menu-item-has-children:hover > .sub-menu {
+    z-index: 9999;
+    opacity: 1;
   }
 }
 

@@ -25,11 +25,12 @@
 			<?php if ( has_nav_menu( 'primary' ) ) : ?>
 
 				<nav id="primary-menu" class="primary-menu" role="navigation" aria-label="<?php _e( 'Primary Menu', 'TEXTDOMAIN' ); ?>">
-					<button type="button" class="toggle toggle-menu" data-target="#primary-menu-container">
+					<label  for="primary-menu-toggle" class="toggle toggle-menu">
 						<span class="menu-label"><?php _e( 'Menu', 'TEXTDOMAIN' ); ?></span>
-						<i class="icon icon-menu"></i>
+						<i class="fa fa-bars"></i>
 						<i class="icon icon-cross"></i>
-					</button>
+					</label>
+                    <input type="checkbox" id="primary-menu-toggle" autocomplete="off" />
 
 					<?php
 					wp_nav_menu( array(
