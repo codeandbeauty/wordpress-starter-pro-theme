@@ -129,8 +129,7 @@ td:last-child {
   display: inline-block;
 }
 
-.page-numbers,
-.nav-subtitle {
+.page-numbers {
   border: 0;
   display: inline-block;
   padding: 3px 12px;
@@ -154,6 +153,12 @@ td:last-child {
   &.dots {
     border: 0;
   }
+
+  &.next,
+  &.prev {
+    color: #464646;
+    background-color: transparent;
+  }
 }
 
 .nav-links {
@@ -161,6 +166,9 @@ td:last-child {
 }
 .nav-subtitle {
   display: inline-block;
+  color: #464646;
+  font-size: 1.8em;
+  line-height: 1;
 }
 .nav-previous {
   float: left;

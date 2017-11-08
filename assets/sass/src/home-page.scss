@@ -25,6 +25,7 @@
   }
 
   .read-more {
+    position: relative;
     background-color: #21759b;
     color: #ffffff;
     display: inline-block;
@@ -32,6 +33,22 @@
     text-transform: uppercase;
     font-size: 0.8em;
     @include radius(3px);
+
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      @include boxshadow(2px 0 0 2px #f1f1f1, 3px 0 0 3px #fff);
+      @include radius(3px);
+      @include transition(0.4s);
+    }
+
+    &:hover:before {
+      @include transform(scaleX(-1));
+    }
   }
 
   @media screen {
@@ -53,6 +70,12 @@
         text-shadow: 0 0 1px #000;
         max-width: 65%;
         margin-left: auto;
+      }
+
+      .feature-title {
+        text-shadow: 2px 1px #444, 3px 1px #555, 4px 1px #666;
+        margin: 0;
+        font-size: 2em;
       }
 
       .featured-content {
@@ -80,6 +103,12 @@
       .feature-header,
       .featured-content {
         max-width: 60%;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .feature-title {
+        font-size: 2.4em;
       }
     }
   }

@@ -45,8 +45,8 @@ get_header(); ?>
 							endif;
 
 							the_post_navigation( array(
-								'prev_text' => '<span class="screen-reader-text">' . __( 'Previous Post', 'ui' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Previous', 'ui' ) . '</span> <span class="nav-title">%title</span>',
-								'next_text' => '<span class="screen-reader-text">' . __( 'Next Post', 'ui' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Next', 'ui' ) . '</span> <span class="nav-title">%title</span>',
+								'prev_text' => '<span class="screen-reader-text">' . __( 'Previous Post', 'TEXTDOMAIN' ) . '</span><span class="nav-subtitle"><i class="fa fa-long-arrow-left"></i></span> <span class="nav-title">%title</span>',
+								'next_text' => '<span class="screen-reader-text">' . __( 'Next Post', 'TEXTDOMAIN' ) . '</span><span class="nav-subtitle"><i class="fa fa-long-arrow-right"></i></span> <span class="nav-title">%title</span>',
 							) );
 						endif;
 					endwhile;
@@ -54,8 +54,8 @@ get_header(); ?>
 					if ( ! is_singular() ) :
 
 						the_posts_pagination( array(
-							'prev_text'          => '<span class="screen-reader-text">' . __( 'Previous page', 'ui' ) . '</span><span class="meta-prev">' . __( 'Previous', 'ui' ) . '</span>',
-							'next_text'          => '<span class="screen-reader-text">' . __( 'Next page', 'ui' ) . '</span><span class="meta-next">' . __( 'Next', 'ui' ) . '</span>',
+							'prev_text'          => '<span class="screen-reader-text">' . __( 'Previous page', 'ui' ) . '</span><span class="meta-prev"><i class="fa fa-long-arrow-left"></i></span>',
+							'next_text'          => '<span class="screen-reader-text">' . __( 'Next page', 'ui' ) . '</span><span class="meta-next"><i class="fa fa-long-arrow-right"></i></span>',
 							'before_page_number' => '<span class="meta-nav screen-reader-text">' . __( 'Page', 'ui' ) . ' </span>',
 						) );
 

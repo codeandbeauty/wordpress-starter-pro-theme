@@ -1,4 +1,5 @@
-.archive {
+.archive,
+.blog {
   .section {
     padding: 0;
     border: 1px solid transparent;
@@ -7,6 +8,20 @@
   .entry-title {
     font-weight: 300;
     color: #111111;
+
+    &:before {
+      content: '\f0c1';
+      font-family: FontAwesome;
+      color: #ccc;
+      display: inline-block;
+      margin-right: 5px;
+      @include transition(0.4s);
+    }
+
+    &:hover:before {
+      color: inherit;
+      @include transform(rotate(195deg));
+    }
   }
 
   article {

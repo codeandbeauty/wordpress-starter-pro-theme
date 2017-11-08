@@ -31,8 +31,8 @@ get_header(); ?>
 						endif;
 
 						the_post_navigation( array(
-							'prev_text' => '<span class="screen-reader-text">' . __( 'Previous Post', 'TEXTDOMAIN' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Previous', 'TEXTDOMAIN' ) . '</span> <span class="nav-title">%title</span>',
-							'next_text' => '<span class="screen-reader-text">' . __( 'Next Post', 'TEXTDOMAIN' ) . '</span><span aria-hidden="true" class="nav-subtitle">' . __( 'Next', 'TEXTDOMAIN' ) . '</span> <span class="nav-title">%title</span>',
+							'prev_text' => '<span class="screen-reader-text">' . __( 'Previous Post', 'TEXTDOMAIN' ) . '</span><span class="nav-subtitle"><i class="fa fa-long-arrow-left"></i></span> <span class="nav-title">%title</span>',
+							'next_text' => '<span class="screen-reader-text">' . __( 'Next Post', 'TEXTDOMAIN' ) . '</span><span class="nav-subtitle"><i class="fa fa-long-arrow-right"></i></span> <span class="nav-title">%title</span>',
 						) );
 					endwhile;
 					?>

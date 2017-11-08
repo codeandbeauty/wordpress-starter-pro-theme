@@ -116,7 +116,7 @@ section:before, section:after {
   }
   .with-right-sidebar .main-container {
     width: 75%;
-    padding-right: 25px;
+    padding-right: 45px;
     box-shadow: 15px 0 15px -10px #999;
   }
   .with-right-sidebar .right-container {
@@ -254,8 +254,7 @@ td:last-child {
   display: inline-block;
 }
 
-.page-numbers,
-.nav-subtitle {
+.page-numbers {
   border: 0;
   display: inline-block;
   padding: 3px 12px;
@@ -263,22 +262,22 @@ td:last-child {
   color: #fff;
   border-radius: 3px;
 }
-.page-numbers:hover,
-.nav-subtitle:hover {
+.page-numbers:hover {
   background-color: #3b3b3b;
   color: #ffffff;
 }
-.page-numbers.current, .page-numbers.dots,
-.nav-subtitle.current,
-.nav-subtitle.dots {
+.page-numbers.current, .page-numbers.dots {
   color: inherit;
   border: 0;
   background: transparent;
   border-bottom: 3px double #c6c6c6;
 }
-.page-numbers.dots,
-.nav-subtitle.dots {
+.page-numbers.dots {
   border: 0;
+}
+.page-numbers.next, .page-numbers.prev {
+  color: #464646;
+  background-color: transparent;
 }
 
 .nav-links {
@@ -294,6 +293,9 @@ td:last-child {
 
 .nav-subtitle {
   display: inline-block;
+  color: #464646;
+  font-size: 1.8em;
+  line-height: 1;
 }
 
 .nav-previous {
@@ -648,49 +650,76 @@ button:focus {
 }
 
 /** General archive styling **/
-.archive .section {
+.archive .section,
+.blog .section {
   padding: 0;
   border: 1px solid transparent;
 }
-.archive .entry-title {
+.archive .entry-title,
+.blog .entry-title {
   font-weight: 300;
   color: #111111;
 }
-.archive article {
+.archive .entry-title:before,
+.blog .entry-title:before {
+  content: '\f0c1';
+  font-family: FontAwesome;
+  color: #ccc;
+  display: inline-block;
+  margin-right: 5px;
+  transition: 0.4s;
+}
+.archive .entry-title:hover:before,
+.blog .entry-title:hover:before {
+  color: inherit;
+  -ms-transform: rotate(195deg);
+  transform: rotate(195deg);
+}
+.archive article,
+.blog article {
   clear: both;
   margin: 0 0 25px 0;
   border: 1px solid transparent;
 }
-.archive article:before, .archive article:after {
+.archive article:before, .archive article:after,
+.blog article:before,
+.blog article:after {
   content: '';
   display: block;
   clear: both;
   padding: 0;
   margin: 0;
 }
-.archive article .inner {
+.archive article .inner,
+.blog article .inner {
   clear: both;
 }
-.archive article .inner:before, .archive article .inner:after {
+.archive article .inner:before, .archive article .inner:after,
+.blog article .inner:before,
+.blog article .inner:after {
   content: '';
   display: block;
   clear: both;
   padding: 0;
   margin: 0;
 }
-.archive .comment-meta {
+.archive .comment-meta,
+.blog .comment-meta {
   float: right;
   padding-left: 15px;
 }
-.archive .entry-footer {
+.archive .entry-footer,
+.blog .entry-footer {
   font-size: 0.9em;
 }
-.archive .entry-footer .meta {
+.archive .entry-footer .meta,
+.blog .entry-footer .meta {
   display: inline-block;
   margin-right: 15px;
 }
 @media screen and (min-width: 700px) {
-  .archive .feature-image {
+  .archive .feature-image,
+  .blog .feature-image {
     float: left;
     margin: 0 15px 5px 0;
     width: 35%;
@@ -706,7 +735,7 @@ button:focus {
 .single .section,
 .page .single-section,
 .page .section {
-  padding-top: 25px;
+  padding-top: 45px;
   padding-bottom: 0;
   border: 1px solid transparent;
 }
@@ -773,6 +802,9 @@ button:focus {
   margin: 0;
   list-style: none;
   padding: 0;
+}
+.comment-area .comment-list .comment {
+  display: block;
 }
 .comment-area .comment-body {
   margin: 0 0 25px 0;
@@ -882,6 +914,7 @@ button:focus {
   margin: 15px 0;
 }
 .featured-page .read-more {
+  position: relative;
   background-color: #21759b;
   color: #ffffff;
   display: inline-block;
@@ -889,6 +922,21 @@ button:focus {
   text-transform: uppercase;
   font-size: 0.8em;
   border-radius: 3px;
+}
+.featured-page .read-more:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-shadow: 2px 0 0 2px #f1f1f1, 3px 0 0 3px #fff;
+  border-radius: 3px;
+  transition: 0.4s;
+}
+.featured-page .read-more:hover:before {
+  -ms-transform: scaleX(-1);
+  transform: scaleX(-1);
 }
 @media screen and (min-width: 700px) {
   .featured-page.has-thumb .featured-content-container {
@@ -905,6 +953,11 @@ button:focus {
     text-shadow: 0 0 1px #000;
     max-width: 65%;
     margin-left: auto;
+  }
+  .featured-page .feature-title {
+    text-shadow: 2px 1px #444, 3px 1px #555, 4px 1px #666;
+    margin: 0;
+    font-size: 2em;
   }
   .featured-page .featured-content {
     max-height: 90px;
@@ -928,6 +981,11 @@ button:focus {
   .featured-page .feature-header,
   .featured-page .featured-content {
     max-width: 60%;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .featured-page .feature-title {
+    font-size: 2.4em;
   }
 }
 

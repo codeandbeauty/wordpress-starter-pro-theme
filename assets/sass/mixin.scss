@@ -12,7 +12,7 @@ $hoverLinkColor: #2a4994;
   box-sizing: border-box;
 }
 
-@mixin radius($radius) {
+@mixin radius($radius...) {
   -webkit-border-radius: $radius;
   -moz-border-radius: $radius;
   border-radius: $radius;
@@ -30,17 +30,17 @@ $hoverLinkColor: #2a4994;
   }
 }
 
-@mixin textshadow($shadow) {
+@mixin textshadow($shadow...) {
   text-shadow: $shadow;
 }
 
-@mixin boxshadow($shadow) {
+@mixin boxshadow($shadow...) {
   -webkit-box-shadow: $shadow;
   -moz-box-shadow: $shadow;
   box-shadow: $shadow;
 }
 
-@mixin transition($trans) {
+@mixin transition($trans...) {
   -webkit-transition: $trans;
   -moz-transition: $trans;
   -ms-transition: $trans;
@@ -59,7 +59,7 @@ $hoverLinkColor: #2a4994;
   box-sizing: border-box;
 }
 
-@mixin transform($trans) {
+@mixin transform($trans...) {
   -webkit-transform: $trans;
   -moz-transform: $trans;
   -ms-transform: $trans;
