@@ -267,13 +267,17 @@ module.exports = function(grunt) {
 		            '!assets/sass/',
 		            '!assets/sass/*',
 		            '!assets/sass/**',
+		            '!assets/js/src/*',
+		            '!assets/js/src/**',
+		            '!assets/js/src',
 		            '!.sass-cache/',
 		            '!.idea/', // PHPStorm config
 		            '!.idea/*', // PHPStorm config
 		            '!.idea/**', // PHPStorm config
 		            '!tests/',
 		            '!tests/*',
-		            '!tests/**'
+		            '!tests/**',
+		            '!README.md'
 		        ]
 		    }
 		},
