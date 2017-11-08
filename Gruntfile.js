@@ -29,7 +29,8 @@ module.exports = function(grunt) {
  	    ],
  	    js_files_concat: {
  	        // Include files that will be merge into 1
- 	        // Example: `admin.js: [ ...list of file ]`
+ 	        // Example: `admin.js: [ assets/src/jsone.js, ...list of file ]`,
+ 	        'admin.js': ['assets/src/admin/test1.js']
  	    },
  	    sass_folder: 'assets/sass/',
  	    css_folder: 'assets/css/',
@@ -146,12 +147,22 @@ module.exports = function(grunt) {
 			}
 		},
 
+        // Concatenate js files
+		concat: {
+		    options: {
+		        stripBanners: true
+		    },
+		    scripts: {
+		        files: conf.js_files_concat
+		    }
+		},
+
         // JS: Compile/minify js files.
 		uglify: {
 			all: {
 				files: [{
 					expand: true,
-					src: ['*.js', '!*.min.js', '!Gruntfile.js', '!Gulpfile.js'],
+					src: ['assets/js/*.js', '!assets/js/*.min.js'],
 					ext: '.min.js',
 					extDot: 'last'
 				}],
@@ -308,7 +319,7 @@ module.exports = function(grunt) {
  	});
 
     // Validate and compile js files
- 	grunt.registerTask( 'js', ['jsvalidate', 'jshint', 'uglify'] );
+ 	grunt.registerTask( 'js', ['jsvalidate', 'jshint', 'concat', 'uglify'] );
 
  	// Validate and compile sass files
  	grunt.registerTask( 'css', ['sass', 'autoprefixer', 'cssmin'] );
