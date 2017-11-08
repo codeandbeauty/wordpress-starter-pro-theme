@@ -82,7 +82,25 @@ module.exports = function(grunt) {
 		dest: '',
 		noEmpty: true,
 		options: {
-		    process: function(content) {
+		    process: function(content, src_path) {
+                var file_ext;
+
+                file_ext = src_path.lastIndexOf('.') + 1;
+                file_ext = src_path.substring(file_ext);
+
+                if ( 'php' !== file_ext ||
+                    'html' !== file_ext ||
+                    'htm' !== file_ext ||
+                    'scss' !== file_ext ||
+                    'css' !== file_ext ||
+                    'js' !== file_ext ||
+                    'json' !== file_ext ||
+                    'txt' !== file_ext ||
+                    'pot' !== file_ext
+                    ) {
+                    return content;
+                }
+
                 content = content.replace( /codeandbeauty/g, theme_slug );
                 content = content.replace( /TEXTDOMAIN/g, theme_domain );
 
@@ -241,7 +259,10 @@ module.exports = function(grunt) {
 		            '!.sass-cache/',
 		            '!.idea/', // PHPStorm config
 		            '!.idea/*', // PHPStorm config
-		            '!.idea/**' // PHPStorm config
+		            '!.idea/**', // PHPStorm config
+		            '!tests/',
+		            '!tests/*',
+		            '!tests/**'
 		        ]
 		    }
 		},
@@ -298,10 +319,8 @@ module.exports = function(grunt) {
  	// Generate translation
  	grunt.registerTask( 'makepot', ['makepot'] );
 
- 	// Generate a compress production copy
- 	// Ensure that validation runs first before generating the release
- 	// Ensure that the language gets regenerated
- 	grunt.registerTask( 'generate-zip', ['js', 'css', 'makepot', 'compress'] );
+ 	// Generate a compress copy for production
+ 	grunt.registerTask( 'generate-zip', ['js', 'css', 'compress'] );
 
     grunt.registerTask( 'create-theme', 'Generating new theme...', function() {
  	    var folder, slug, domain;
