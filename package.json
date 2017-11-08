@@ -1,14 +1,14 @@
 {
-  "name": "codeandbeauty-starter-theme",
+  "name": "wordpress-starter-pro-theme",
   "version": "1.0.0",
-  "title": "CodeAndBeauty Starter Theme",
-  "description": "An open source WordPress starter theme.",
-  "homepage": "http://www.codeandbeauty.com/starter-theme",
+  "title": "WordPress Starter PRO Theme",
+  "description": "The only PRO starter theme that comes with pre-configured development tools.",
+  "homepage": "http://www.codeandbeauty.com/wordpress-starter-pro-theme/",
   "repository": {
     "type": "git",
-    "url": "git@github.com:codeandbeauty/starter-theme"
+    "url": "git@github.com:codeandbeauty/wordpress-starter-pro-theme"
   },
-  "author": "CodeAndBeauty",
+  "author": "Code&Beauty",
   "author_email": "support@codeandbeauty.com",
   "author_uri": "http://www.codeandbeauty.com/",
   "license": "GPL-2.0",
